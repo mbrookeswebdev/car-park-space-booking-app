@@ -1,0 +1,11 @@
+@media only screen and (max-width: 768px) {
+    .largeTable {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .smallTable {
+        display: none;
+    }
+}
