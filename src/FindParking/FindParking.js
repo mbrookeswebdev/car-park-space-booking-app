@@ -6,24 +6,24 @@ import CarParkList from "./CarParkList/CarParkList";
 import SimpleBottomNavigation from "../Main/SimpleBottomNavigation/SimpleBottomNavigation";
 import Header from "../Main/Header/Header";
 
+/**
+ * FindParking Component
+ *
+ * Displays a text input field for post code and a Find Parking button.
+ * On click of a button displays a list of car parks with available spaces.
+ */
+
 class FindParking extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId: null,
             postcode: '',
             locations: [],
-            carParkSearchRun: false,
-            carParkId: null
+            carParkSearchRun: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.getCarParks = this.getCarParks.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
-    }
-
-    componentDidMount() {
-        let id = localStorage.getItem('id');
-        this.setState({user_id: id});
     }
 
     handleChange(event) {
@@ -42,7 +42,6 @@ class FindParking extends Component {
             let value = postcode.replace(/\s/g, '');
             const response = await axios.get('http://localhost:8000/api/carparks/' + value);
             this.setState({locations: response.data});
-            this.setState({carParkId: response.data[0].id})
         } catch (error) {
             console.error(error);
         }
@@ -64,7 +63,7 @@ class FindParking extends Component {
                     />
                     <div style={{marginTop: "1%", marginBottom: "5%"}}>
                         <Button variant="contained" color="primary" onClick={this.handleButtonClick}>Find
-                            parking</Button>
+                            Parking</Button>
                     </div>
 
                     <div style={{textAlign: "center", marginBottom: "5%"}}>

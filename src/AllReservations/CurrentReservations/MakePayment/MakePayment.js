@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import Button from "@material-ui/core/Button";
 
+/**
+ * MakePayment Component
+ *
+ * Displays a Pay Now button, on click calls a method in a parent component
+ * AllReservations to complete the reservation in progress.
+ */
+
 class MakePayment extends Component {
     constructor(props) {
         super(props);

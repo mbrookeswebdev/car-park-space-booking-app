@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import ParkingSpace from "../ParkingSpace/ParkingSpace";
 
+/**
+ * ParkingSpaceList Component
+ *
+ * Displays a list of available parking spaces
+ */
+
 class ParkingSpaceList extends Component {
 
     render() {

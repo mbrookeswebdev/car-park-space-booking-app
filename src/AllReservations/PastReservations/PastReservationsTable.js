@@ -6,6 +6,12 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 
+/**
+ * PastReservations Component
+ *
+ * Displays a table with information about three latest completed reservations.
+ */
+
 class PastReservationsTable extends Component {
     constructor(props) {
         super(props);
@@ -27,9 +33,9 @@ class PastReservationsTable extends Component {
                     <Table size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="left">ID</TableCell>
+                                <TableCell align="left">Reservation ID</TableCell>
                                 <TableCell align="left">Date</TableCell>
-                                <TableCell align="left">Price</TableCell>
+                                <TableCell align="left">Price charged</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -49,7 +55,7 @@ class PastReservationsTable extends Component {
                             <TableRow>
                                 <TableCell align="left">Car park</TableCell>
                                 <TableCell align="left">Parking space</TableCell>
-                                <TableCell align="left">ID</TableCell>
+                                <TableCell align="left">Reservation ID</TableCell>
                                 <TableCell align="left">Start date</TableCell>
                                 <TableCell align="left">End date</TableCell>
                                 <TableCell align="left">Car reg no</TableCell>

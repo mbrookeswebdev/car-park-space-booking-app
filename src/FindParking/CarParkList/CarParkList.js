@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import ParkingSpaceList from "../ParkingSpaceList/ParkingSpaceList";
 
+/**
+ * ParkingSpacesList Component
+ *
+ * Displays a car park that matches the entered post code.
+ * On click displays a list of available parking spaces.
+ */
+
 class ParkingSpacesList extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +19,10 @@ class ParkingSpacesList extends Component {
     }
 
     handleLinkClick() {
-        this.setState({parkingSpacesSearchRun: true, parkingSpaces: this.props.results[0].parking_spaces});
+        this.setState({
+            parkingSpacesSearchRun: true,
+            parkingSpaces: this.props.results[0].parking_spaces
+        });
     }
 
     render() {

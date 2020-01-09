@@ -7,12 +7,18 @@ import Header from "../Main/Header/Header";
 import moment from 'moment';
 import Grid from "@material-ui/core/Grid";
 
+/**
+ * AllReservations Component
+ *
+ * Requests and sorts reservation data and passes it to it's children components - Current and Past Reservations.
+ */
+
 class AllReservations extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user_id: null,
-            reservations: [],
+            allReservations: [],
             currentReservations: [],
             pastReservations: []
         };
@@ -40,7 +46,7 @@ class AllReservations extends Component {
     sortReservations(data) {
         const cReservations = data.filter(reservation => reservation.endTime === null);
         const pReservations = data.filter(reservation => reservation.endTime !== null);
-        const currentReservations = cReservations.slice(0, 3);
+        const currentReservations = cReservations.slice(0, 1);
         const pastReservations = pReservations.slice(0, 3);
         const sortedReservations = [currentReservations, pastReservations];
         return sortedReservations;
