@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import uuid from "uuid";
 
 /**
  * Vehicle Component
@@ -53,7 +54,7 @@ class Vehicle extends Component {
             <div>
                 <h3>Your vehicle:</h3>
                 <TextField
-                    key="standard"
+                    id={uuid()}
                     name="regNo"
                     value={this.state.regNo}
                     onChange={this.handleChange}

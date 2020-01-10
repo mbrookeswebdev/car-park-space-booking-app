@@ -13,6 +13,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
+        localStorage.clear();
         this.checkLocalStorage();
     }
 
@@ -21,8 +22,8 @@ class Main extends Component {
     }
 
     checkLocalStorage() {
-        let token = localStorage.getItem("api_token");
-        if (token) {
+        let id = localStorage.getItem("id");
+        if (id) {
             this.setState({localStorageExists: true});
         }
     }

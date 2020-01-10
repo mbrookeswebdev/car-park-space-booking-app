@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import uuid from 'uuid';
 
 /**
  * User Component
@@ -59,7 +60,7 @@ class User extends Component {
                 <h3>Your details:</h3>
                 <div>
                     <TextField
-                        key="standard"
+                        id={uuid()}
                         name="name"
                         value={this.state.name}
                         onChange={this.handleChange}
@@ -70,7 +71,7 @@ class User extends Component {
                 </div>
                 <div>
                     <TextField
-                        key="standard"
+                        id={uuid()}
                         name="email"
                         value={this.state.email}
                         onChange={this.handleChange}
@@ -81,7 +82,7 @@ class User extends Component {
                 </div>
                 <div>
                     <TextField
-                        key="standard"
+                        id={uuid()}
                         name="phone"
                         value={this.state.phone}
                         onChange={this.handleChange}

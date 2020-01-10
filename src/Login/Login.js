@@ -3,6 +3,7 @@ import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import {Redirect} from "react-router-dom";
+import uuid from "uuid";
 
 class Login extends Component {
     constructor(props) {
@@ -32,7 +33,6 @@ class Login extends Component {
                     password: this.state.password
                 });
             this.setState({authorised: true, loginCheckDone: true, user_id: response.data.id});
-            localStorage.setItem('api_token', response.data.api_token);
             localStorage.setItem('id', response.data.id);
             this.props.logIn();
         } catch (error) {
@@ -63,7 +63,7 @@ class Login extends Component {
                     <TextField
                         required
                         name="email"
-                        id="standard-required"
+                        id={uuid()}
                         label="Email"
                         value={this.state.value}
                         margin="normal"
@@ -74,7 +74,7 @@ class Login extends Component {
                     <TextField
                         required
                         name="password"
-                        id="standard-required"
+                        id={uuid()}
                         label="Password"
                         value={this.state.value}
                         margin="normal"
