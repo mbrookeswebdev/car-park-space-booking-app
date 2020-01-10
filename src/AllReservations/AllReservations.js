@@ -20,7 +20,9 @@ class AllReservations extends Component {
             user_id: null,
             allReservations: [],
             currentReservations: [],
-            pastReservations: []
+            pastReservations: [],
+            paid: null,
+            message: ''
         };
         this.getReservations = this.getReservations.bind(this);
         this.sortReservations = this.sortReservations.bind(this);
@@ -44,10 +46,9 @@ class AllReservations extends Component {
     }
 
     sortReservations(data) {
-        const cReservations = data.filter(reservation => reservation.endTime === null);
+        const currentReservations = data.filter(reservation => reservation.endTime === null);
         const pReservations = data.filter(reservation => reservation.endTime !== null);
-        const currentReservations = cReservations.slice(0, 1);
-        const pastReservations = pReservations.slice(0, 3);
+        const pastReservations = (pReservations.reverse()).slice(0, 3);
         const sortedReservations = [currentReservations, pastReservations];
         return sortedReservations;
     }
@@ -59,12 +60,16 @@ class AllReservations extends Component {
                     id: id,
                     endDate: moment().format('DD-MM-YYYY'),
                     endTime: moment().format("HH:mm:ss"),
+                    //hard-coded total price to simplify the application for the time being.
                     totalPrice: "2.00"
                 });
             if (response.request.status === 200) {
                 this.getReservations(this.state.user_id);
+                this.setState({paid: true, message: "Thank you, your payment was processed successfully."});
+                setTimeout(() => this.setState({message: ''}), 3000);
             }
         } catch (error) {
+            this.setState({paid: false});
             console.error(error);
         }
     }
@@ -87,6 +92,12 @@ class AllReservations extends Component {
                                 {this.state.currentReservations.length === 0 &&
                                 <h4>No current reservations found.</h4>}
                             </div>
+
+                            <div style={{textAlign: "center", marginTop: "3%", marginBottom: "3%"}}>
+                                {this.state.paid &&
+                                this.state.message}
+                            </div>
+
                         </Grid>
                         <Grid item xs={12} sm={12} lg={12}>
                             {this.state.pastReservations.length > 0 &&

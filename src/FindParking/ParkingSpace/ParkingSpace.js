@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './ParkingSpace.css';
 import MakeReservation from "../MakeReservation/MakeReservation";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
 
 /**
  * ParkingSpace Component
@@ -17,6 +19,7 @@ class ParkingSpace extends Component {
             reserved: null
         };
         this.displayMessage = this.displayMessage.bind(this);
+        this.displayMessage2 = this.displayMessage2.bind(this);
     }
 
     displayMessage(status) {
@@ -26,26 +29,33 @@ class ParkingSpace extends Component {
     }
 
     displayMessage2(status) {
-        if (status) {
-            this.setState({
-                reserved: false,
-                message: "Sorry, cannot reserve until the reservation in progress is paid for."
-            });
+        if (!status) {
+            this.setState({reserved: false, message2: "Sorry, only one reservation in progress is allowed."});
         }
     }
 
     render() {
         return (
             <div>
-                <div style={{textAlign: "center", marginBottom: "2%"}}>{this.state.reserved && this.state.message}</div>
-                <div className="grid-container">
-                    {this.props.items.map((parkingSpace) => (parkingSpace.status === 'available' &&
-                        <div className="grid-item" key={parkingSpace.ref}>
-                            <h4>Parking bay no: {parkingSpace.id}</h4>
-                            <MakeReservation displayMessage={this.displayMessage} displayMessage2={this.displayMessage2}
-                                             parkingSpaceId={parkingSpace.id} carParkId={parkingSpace.car_park_id}/>
-                        </div>))}
+                <div style={{textAlign: "center", marginBottom: "2%"}}>
+                    {this.state.reserved ? this.state.message : this.state.message2}
                 </div>
+                <GridList style={{marginLeft: "3%", marginRight: "3%", marginBottom: "30%"}}
+                          cellHeight={'auto'}
+                          cols={3}
+                          spacing={5}>
+                    {this.props.items.map((parkingSpace) => (parkingSpace.status === 'available' &&
+                        <GridListTile
+                            key={parkingSpace.ref}
+                            cols={1}>
+                            <h4>Parking bay no: {parkingSpace.id}</h4>
+                            <MakeReservation displayMessage={this.displayMessage}
+                                             displayMessage2={this.displayMessage2}
+                                             parkingSpaceId={parkingSpace.id} carParkId={parkingSpace.car_park_id}/>
+
+                        </GridListTile>
+                    ))}
+                </GridList>
             </div>
         );
     }

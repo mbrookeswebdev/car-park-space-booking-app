@@ -8,7 +8,6 @@ import ParkingSpace from "../ParkingSpace/ParkingSpace";
  */
 
 class ParkingSpaceList extends Component {
-
     render() {
         return (
             <div style={{textAlign: "center", marginTop: "3%"}}>
@@ -17,7 +16,12 @@ class ParkingSpaceList extends Component {
                 )}
 
                 <div style={{textAlign: "center", marginTop: "3%"}}>
-                    {this.props.results.length > 0 &&
+                    {this.props.carParkAddress !== null &&
+                    <h3>{this.props.carParkAddress}</h3>}
+                </div>
+
+                <div style={{textAlign: "center", marginTop: "1%"}}>
+                    {(this.props.results.length > 0) &&
                     <ParkingSpace items={this.props.results}/>
                     }</div>
             </div>

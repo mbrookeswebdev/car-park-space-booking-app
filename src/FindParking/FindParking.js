@@ -61,7 +61,7 @@ class FindParking extends Component {
                         value={this.state.postcode}
                         onChange={this.handleChange}
                     />
-                    <div style={{marginTop: "1%", marginBottom: "5%"}}>
+                    <div style={{marginTop: "1%", marginBottom: "4%"}}>
                         <Button variant="contained" color="primary" onClick={this.handleButtonClick}>Find
                             Parking</Button>
                     </div>

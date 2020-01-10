@@ -5,6 +5,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
+import uuid from 'react-uuid';
 
 /**
  * PastReservations Component
@@ -13,18 +14,6 @@ import TableBody from "@material-ui/core/TableBody";
  */
 
 class PastReservationsTable extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user_id: null
-        };
-    }
-
-    componentDidMount() {
-        let id = localStorage.getItem('id');
-        this.setState({user_id: id});
-    }
-
     render() {
         return (
             <div style={{marginLeft: "2%", marginRight: "2%"}}>
@@ -40,7 +29,7 @@ class PastReservationsTable extends Component {
                         </TableHead>
                         <TableBody>
                             {this.props.pastReservations.map(row => (
-                                <TableRow key={row.startDate}>
+                                <TableRow key={uuid()}>
                                     <TableCell align="left">{row.id}</TableCell>
                                     <TableCell align="left">{row.endDate}</TableCell>
                                     <TableCell align="left">{row.priceCharged}</TableCell>
@@ -64,8 +53,8 @@ class PastReservationsTable extends Component {
                         </TableHead>
                         <TableBody>
                             {this.props.pastReservations.map(row => (
-                                <TableRow key={row.startDate}>
-                                    <TableCell align="left">{row.carPark}</TableCell>
+                                <TableRow key={uuid()}>
+                                    <TableCell align="left">{row.car_park_id}</TableCell>
                                     <TableCell align="left">{row.parking_space_id}</TableCell>
                                     <TableCell align="left">{row.id}</TableCell>
                                     <TableCell align="left">{row.startDate}</TableCell>

@@ -45,7 +45,6 @@ class Account extends Component {
     }
 
     async updateUserDetails(id, name, email, phone) {
-        console.log(id, name, email, phone);
         let response = await axios.patch('http://localhost:8000/api/users/' + id,
             {
                 id: id,

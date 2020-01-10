@@ -36,7 +36,7 @@ class Login extends Component {
             localStorage.setItem('id', response.data.id);
             this.props.logIn();
         } catch (error) {
-            console.log(error);
+            console.log('error');
             this.setState({authorised: false, message: "Login information is incorrect."});
         }
     }
