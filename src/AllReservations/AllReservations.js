@@ -6,6 +6,7 @@ import PastReservationsTable from "./PastReservations/PastReservationsTable";
 import Header from "../Main/Header/Header";
 import moment from 'moment';
 import Grid from "@material-ui/core/Grid";
+import {connect} from 'react-redux';
 
 /**
  * AllReservations Component
@@ -30,9 +31,7 @@ class AllReservations extends Component {
     }
 
     componentDidMount() {
-        let id = localStorage.getItem('id');
-        this.getReservations(id);
-        this.setState({user_id: id});
+        this.getReservations(this.props.id);
     }
 
     async getReservations(user_id) {
@@ -117,4 +116,11 @@ class AllReservations extends Component {
     }
 }
 
-export default AllReservations;
+
+const mapStateToProps = (state) => {
+    return {
+        id: state.id
+    }
+};
+
+export default connect(mapStateToProps)(AllReservations);

@@ -5,7 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {useHistory} from "react-router-dom";
+import {connect} from 'react-redux';
+import {deleteId} from '../../Actions/deleteIdAction';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,12 +22,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Header() {
+function Header(props) {
+
     const classes = useStyles();
-    let history = useHistory();
 
     function handleClick() {
-        history.push("/");
+        props.deleteId();
     }
 
     return (
@@ -40,3 +42,19 @@ export default function Header() {
         </div>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        id: state.id
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteId: () => {
+            dispatch(deleteId())
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

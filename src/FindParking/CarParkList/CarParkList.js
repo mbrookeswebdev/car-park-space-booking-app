@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ParkingSpaceList from "../ParkingSpaceList/ParkingSpaceList";
-
+import './CarParkList.css';
 /**
  * ParkingSpacesList Component
  *
@@ -45,7 +45,7 @@ class CarParkList extends Component {
                 {!this.state.parkingSpacesSearchRun &&
                 <div>
                     {this.props.results.map((location) => (
-                        <h3 key={location.id} onClick={() => this.handleLinkClick(location.id)}>{location.address}</h3>
+                        <h3 className="carParkLocation" key={location.id} onClick={() => this.handleLinkClick(location.id)}>{location.address}</h3>
                     ))}</div>}
 
                 <div style={{textAlign: "center", marginTop: "3%"}}>

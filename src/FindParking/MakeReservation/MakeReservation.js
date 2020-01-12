@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import {Redirect} from 'react-router-dom';
 import moment from 'moment';
+import {connect} from 'react-redux';
 
 class MakeReservation extends Component {
     constructor(props) {
@@ -23,9 +24,7 @@ class MakeReservation extends Component {
     }
 
     componentDidMount() {
-        let id = localStorage.getItem('id');
-        this.getDetails(id);
-        this.setState({user_id: id});
+        this.getDetails(this.props.id);
     }
 
     async checkIncompleteReservations(user_id) {
@@ -39,7 +38,7 @@ class MakeReservation extends Component {
     }
 
     handleReservation() {
-        this.checkIncompleteReservations(this.state.user_id);
+        this.checkIncompleteReservations(this.props.id);
     }
 
     async reserveParkingSpace() {
@@ -51,7 +50,7 @@ class MakeReservation extends Component {
                 endTime: null,
                 parking_space_id: this.props.parkingSpaceId,
                 car_park_id: this.props.carParkId,
-                user_id: this.state.user_id,
+                user_id: this.props.id,
                 regNo: this.state.regNo,
                 priceCharged: null
             });
@@ -90,5 +89,11 @@ class MakeReservation extends Component {
     }
 }
 
-export default MakeReservation;
+const mapStateToProps = (state) => {
+    return {
+        id: state.id
+    }
+};
+
+export default connect(mapStateToProps)(MakeReservation);
 

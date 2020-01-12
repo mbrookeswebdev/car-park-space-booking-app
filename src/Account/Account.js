@@ -5,6 +5,7 @@ import SimpleBottomNavigation from "../Main/SimpleBottomNavigation/SimpleBottomN
 import Header from "../Main/Header/Header";
 import User from "./User/User";
 import Vehicle from "./Vehicle/Vehicle";
+import {connect} from 'react-redux';
 
 /**
  * Account Component
@@ -27,9 +28,7 @@ class Account extends Component {
     }
 
     componentDidMount() {
-        let id = localStorage.getItem('id');
-        this.getDetails(id);
-        this.setState({user_id: id});
+        this.getDetails(this.props.id);
     }
 
     async getDetails(user_id) {
@@ -103,4 +102,10 @@ class Account extends Component {
     }
 }
 
-export default Account;
+const mapStateToProps = (state) => {
+    return {
+        id: state.id
+    }
+};
+
+export default connect(mapStateToProps)(Account);

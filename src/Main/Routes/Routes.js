@@ -4,27 +4,28 @@ import Login from '../../Login/Login';
 import Account from '../../Account/Account';
 import AllReservations from "../../AllReservations/AllReservations";
 import FindParking from '../../FindParking/FindParking';
+import {connect} from 'react-redux';
 
 class Routes extends Component {
 
-    logIn() {
-        this.setState({isLoggedIn: true});
-    }
-
     render() {
-        const isLoggedIn = this.props.localStorageExists;
         return (
             <div className="routes">
-                <Route
-                    exact={isLoggedIn} path={'/'}
-                    render={(props) => <Login {...props} logIn={this.props.onLogin}/>}/>
-                {isLoggedIn && <Route exact path="/account" component={Account}/>}
-                {isLoggedIn && <Route exact path="/reservations" component={AllReservations}/>}
-                {isLoggedIn && <Route exact path="/find" component={FindParking}/>}
-
+                <Route exact path="/" component={Login}/>
+                <Route exact path="/account" component={Account}/>
+                <Route exact path="/reservations" component={AllReservations}/>
+                <Route exact path="/find" component={FindParking}/>
             </div>
         );
     }
 }
 
-export default Routes;
+const mapStateToProps = (state) => {
+    console.log("in mapStateToProps");
+    console.log(state);
+    return {
+        id: state.id
+    }
+};
+
+export default connect(mapStateToProps)(Routes);

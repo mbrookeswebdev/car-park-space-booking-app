@@ -5,3 +5,12 @@
 .center {
     text-align: center;
 }
+
+.carParkLocation:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+.carParkLocation:active{
+    color: blue;
+}
