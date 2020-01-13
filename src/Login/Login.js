@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import uuid from "uuid";
 import {connect} from 'react-redux';
 import {setId} from '../Actions/setIdAction';

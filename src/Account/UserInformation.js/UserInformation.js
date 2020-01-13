@@ -10,14 +10,15 @@ import uuid from 'uuid';
  *
  */
 
-class User extends Component {
+class UserInformation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
+            user_id: '',
             name: '',
-            email: '',
             phone: '',
+            email: '',
+            regNo: '',
             message: ''
         };
         this.handleChange = this.handleChange.bind(this);
@@ -26,10 +27,11 @@ class User extends Component {
 
     componentDidMount() {
         this.setState({
-            id: this.props.details[0].id,
-            name: this.props.details[0].name,
-            phone: this.props.details[0].phone,
-            email: this.props.details[0].email
+            user_id: this.props.details.id,
+            name: this.props.details.name,
+            phone: this.props.details.phone,
+            email: this.props.details.email,
+            regNo: this.props.details.vehicle_reg_no
         })
     }
 
@@ -40,19 +42,22 @@ class User extends Component {
     }
 
     handleUpdate() {
-        if (this.state.name.length === 0 || this.state.email.length === 0 || this.state.phone.length === 0) {
+        if (this.state.name.length === 0 || this.state.email.length === 0 || this.state.phone.length === 0 || this.state.regNo < 7) {
             this.setState({message: "All fields must be filled in."});
         } else {
             this.setState({message: ''});
             //passes updated details to the parent component for it to deal with the update
-            this.props.updateDetails(this.state.id, this.state.name, this.state.email, this.state.phone);
+            this.props.updateDetails(this.state.user_id, this.state.name, this.state.email, this.state.phone, this.state.regNo);
         }
     }
 
     render() {
-
         const inputPropsPhone = {
             maxLength: 11
+        };
+
+        const inputPropsVehicle = {
+            maxLength: 7,
         };
 
         return (
@@ -64,9 +69,11 @@ class User extends Component {
                         name="name"
                         value={this.state.name}
                         onChange={this.handleChange}
+                        error={this.state.name === ''}
+                        helperText={this.state.name === "" ? 'This field must be filled' : ''}
                         label="Name"
                         margin="normal"
-                        required
+                        required={true}
                     />
                 </div>
                 <div>
@@ -75,9 +82,11 @@ class User extends Component {
                         name="email"
                         value={this.state.email}
                         onChange={this.handleChange}
+                        error={this.state.email === ''}
+                        helperText={this.state.email === "" ? 'This field must be filled' : ''}
                         label="Email"
                         margin="normal"
-                        required
+                        required={true}
                     />
                 </div>
                 <div>
@@ -86,22 +95,38 @@ class User extends Component {
                         name="phone"
                         value={this.state.phone}
                         onChange={this.handleChange}
+                        error={this.state.phone === ''}
+                        helperText={this.state.phone === "" ? 'This field must be filled' : ''}
                         label="Phone"
                         margin="normal"
                         inputProps={inputPropsPhone}
-                        required
+                        required={true}
                     />
-                    <div style={{marginTop: "6%"}}>
-                        <Button variant="contained" color="primary" onClick={this.handleUpdate}>
-                            Update
-                        </Button>
-                        {this.state.message && (<div><h5 style={{color: "red"}}>{this.state.message}</h5></div>)}
-                    </div>
+                </div>
+                <div>
+                    <TextField
+                        id={uuid()}
+                        name="regNo"
+                        value={this.state.regNo}
+                        onChange={this.handleChange}
+                        error={this.state.regNo === ''}
+                        helperText={this.state.regNo === "" ? 'This field must be filled' : ''}
+                        label="Registration number"
+                        margin="normal"
+                        inputProps={inputPropsVehicle}
+                        required={true}
+                    />
+                </div>
 
+                <div style={{marginTop: "6%"}}>
+                    <Button variant="contained" color="primary" onClick={this.handleUpdate}>
+                        Update
+                    </Button>
+                    {this.state.message && (<div><h5 style={{color: "red"}}>{this.state.message}</h5></div>)}
                 </div>
             </div>
         );
     }
 }
 
-export default User;
+export default UserInformation;

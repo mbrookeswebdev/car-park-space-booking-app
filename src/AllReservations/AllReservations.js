@@ -18,7 +18,6 @@ class AllReservations extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_id: null,
             allReservations: [],
             currentReservations: [],
             pastReservations: [],
@@ -40,7 +39,7 @@ class AllReservations extends Component {
             const sortedData = this.sortReservations(response.data);
             this.setState({currentReservations: sortedData[0], pastReservations: sortedData[1]});
         } catch (error) {
-            console.error(error);
+            console.error("No reservations found.");
         }
     }
 
@@ -54,7 +53,7 @@ class AllReservations extends Component {
 
     async handlePayment(id) {
         try {
-            let response = await axios.patch('http://localhost:8000/api/reservations/' + id + '/makePayment',
+            let response = await axios.patch('http://localhost:8000/api/reservations/' + id,
                 {
                     id: id,
                     endDate: moment().format('DD-MM-YYYY'),
@@ -63,7 +62,7 @@ class AllReservations extends Component {
                     totalPrice: "2.00"
                 });
             if (response.request.status === 200) {
-                this.getReservations(this.state.user_id);
+                this.getReservations(this.props.id);
                 this.setState({paid: true, message: "Thank you, your payment was processed successfully."});
                 setTimeout(() => this.setState({message: ''}), 3000);
             }

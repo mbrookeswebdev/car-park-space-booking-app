@@ -33,8 +33,9 @@ class FindParking extends Component {
     }
 
     handleButtonClick() {
+        let emptyLocations = [];
         this.getCarParks(this.state.postcode);
-        this.setState({carParkSearchRun: true});
+        this.setState({locations: emptyLocations, carParkSearchRun: true});
     }
 
     async getCarParks(postcode) {
@@ -68,7 +69,7 @@ class FindParking extends Component {
 
                     <div style={{textAlign: "center", marginBottom: "5%"}}>
                         {this.state.locations.length > 0 &&
-                        <CarParkList results={this.state.locations}/>}
+                        <CarParkList results={this.state.locations} reset={this.emptyLocations}/>}
                     </div>
 
                     <div style={{textAlign: "center", marginBottom: "3%"}}>

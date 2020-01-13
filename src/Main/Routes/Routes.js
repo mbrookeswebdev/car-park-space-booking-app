@@ -21,8 +21,6 @@ class Routes extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("in mapStateToProps");
-    console.log(state);
     return {
         id: state.id
     }

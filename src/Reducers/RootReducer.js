@@ -12,7 +12,6 @@ const rootReducer = (state = initState, action) => {
         }
     } else {
         if (action.type === 'SET_ID') {
-            console.log('I am action id', action.id);
             localStorage.setItem('id', action.id);
             let newId = action.id;
             return {

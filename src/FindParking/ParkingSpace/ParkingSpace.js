@@ -51,7 +51,9 @@ class ParkingSpace extends Component {
                             <h4>Parking bay no: {parkingSpace.id}</h4>
                             <MakeReservation displayMessage={this.displayMessage}
                                              displayMessage2={this.displayMessage2}
-                                             parkingSpaceId={parkingSpace.id} carParkId={parkingSpace.car_park_id}/>
+                                             parkingSpaceId={parkingSpace.id}
+                                             carParkId={parkingSpace.car_park_id}
+                                            />
 
                         </GridListTile>
                     ))}

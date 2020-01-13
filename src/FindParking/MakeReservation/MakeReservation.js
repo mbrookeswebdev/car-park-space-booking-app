@@ -67,7 +67,7 @@ class MakeReservation extends Component {
             const response = await axios.get('http://localhost:8000/api/users/' + user_id);
             this.setState(
                 {
-                    regNo: response.data[0].vehicles[0].regNo
+                    regNo: response.data.vehicle_reg_no
                 });
         } catch (error) {
             console.error(error);
