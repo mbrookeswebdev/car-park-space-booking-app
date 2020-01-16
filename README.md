@@ -1,6 +1,6 @@
 ### Park & Go - car park space booking application (front-end)
 
-An application for reserving parking spaces.
+An application for reservation of parking spaces.
 
 *Technologies used:* HTML, CSS, React, Material UI, Redux, axios.
 
