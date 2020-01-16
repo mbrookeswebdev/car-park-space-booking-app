@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Parking Application",
+  "short_name": "Park & Go",
+  "name": "Park & Go",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
