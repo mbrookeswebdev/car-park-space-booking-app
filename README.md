@@ -2,7 +2,7 @@
 
 An application for reservation of parking spaces.
 
-*Technologies used:* HTML, CSS, React, Material UI, Redux, axios.
+*Technologies used:* React, Material UI, Redux, Axios.
 
 *Purpose:* to practice using React library.
 
